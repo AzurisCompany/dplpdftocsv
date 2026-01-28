@@ -47,6 +47,9 @@ def extract_main_info(text):
         'localizacao': None,
     }
     
+    # Divide o texto em linhas uma única vez
+    lines = text.split('\n')
+    
     # Extrai email
     email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
     emails = re.findall(email_pattern, text)
@@ -59,40 +62,88 @@ def extract_main_info(text):
     if phones:
         info['telefone'] = phones[0]
     
-    # Extrai LinkedIn (versão melhorada para pegar o link completo)
-    linkedin_pattern = r'(?:linkedin\.com/in/|www\.linkedin\.com/in/)([a-zA-Z0-9-]+)'
-    linkedin = re.search(linkedin_pattern, text, re.IGNORECASE)
-    if linkedin:
-        info['linkedin'] = f"linkedin.com/in/{linkedin.group(1)}"
+    # Extrai LinkedIn - Busca no texto original com quebras de linha
+    linkedin_with_break = re.search(r'linkedin\.com/in/([a-zA-Z0-9-]+)\s*\n\s*([a-zA-Z0-9-]+)', text, re.IGNORECASE)
+    if linkedin_with_break:
+        username = linkedin_with_break.group(1) + linkedin_with_break.group(2)
+        info['linkedin'] = f"linkedin.com/in/{username}"
     else:
-        # Tenta encontrar URLs de LinkedIn no texto
-        url_pattern = r'(?:https?://)?(?:www\.)?linkedin\.com/in/[a-zA-Z0-9-]+'
-        url_match = re.search(url_pattern, text, re.IGNORECASE)
-        if url_match:
-            url = url_match.group(0)
-            # Remove https:// e www. se existirem
-            url = re.sub(r'^(?:https?://)?(?:www\.)?', '', url)
-            info['linkedin'] = url
-    
-    # Extrai nome e headline
-    lines = text.split('\n')
-    for i, line in enumerate(lines):
-        line_clean = line.strip()
+        text_normalized = text.replace('\n', ' ')
+        linkedin_url_pattern = r'(?:https?://)?(?:www\.)?linkedin\.com/in/([a-zA-Z0-9-]+)'
+        linkedin_match = re.search(linkedin_url_pattern, text_normalized, re.IGNORECASE)
         
-        # Procura por padrão de nome + headline (ex: "Alessandro Kulitch\nCoordenador de Engenharia...")
-        if any(title in line for title in ['Coordenador', 'Engenheiro', 'Gerente', 'Analista', 'Professor', 'Consultor', 'Diretor', 'Especialista']):
-            # Pega o próximo padrão de cargo/headline
-            if not info['headline']:
-                info['headline'] = line_clean
+        if linkedin_match:
+            username = linkedin_match.group(1).strip()
+            info['linkedin'] = f"linkedin.com/in/{username}"
+    
+    # Extrai NOME - Usa o username do LinkedIn como referência
+    if info['linkedin']:
+        username = info['linkedin'].replace('linkedin.com/in/', '').lower()
+        username_parts = username.split('-')
+        
+        if len(username_parts) >= 2:
+            first_name = username_parts[0].capitalize()
+            last_name = username_parts[1].capitalize()
             
-            # Nome está poucas linhas antes
-            if not info['nome']:
-                for j in range(max(0, i-3), i):
-                    candidate = lines[j].strip()
-                    if candidate and len(candidate.split()) >= 2 and len(candidate) < 80:
-                        if not any(char.isdigit() for char in candidate) and not any(kw in candidate for kw in ['Contato', 'Email', 'Phone', 'Mobile', 'LinkedIn']):
-                            info['nome'] = candidate
-                            break
+            # Procura por esse padrão no texto
+            name_pattern = rf'{first_name}\s+{last_name}'
+            name_match = re.search(name_pattern, text, re.IGNORECASE)
+            
+            if name_match:
+                info['nome'] = name_match.group(0)
+            else:
+                # Fallback: procura por qualquer combinação
+                name_pattern = rf'{first_name}.*?{last_name}'
+                name_match = re.search(name_pattern, text, re.IGNORECASE | re.DOTALL)
+                if name_match:
+                    found_name = name_match.group(0).replace('\n', ' ').strip()
+                    if len(found_name) < 80:
+                        info['nome'] = found_name
+    
+    # Se não conseguiu pelo LinkedIn, tenta buscar manualmente
+    if not info['nome']:
+        for i, line in enumerate(lines):
+            line_clean = line.strip()
+            
+            # Procura por primeira linha com 2-4 palavras capitalizadas após "Languages"
+            if i > 0 and 'Languages' in lines[i-1]:
+                words = line_clean.split()
+                if 2 <= len(words) <= 4 and line_clean and '(' not in line_clean:
+                    is_name = all(w[0].isupper() and w.replace('-', '').isalpha() for w in words if w)
+                    if is_name:
+                        info['nome'] = line_clean
+                        break
+    
+    # Extrai HEADLINE - Procura por linhas com pipes (|) que indicam múltiplos cargos
+    # O headline pode ocupar múltiplas linhas
+    for i, line in enumerate(lines):
+        if '|' in line or any(title in line for title in ['Coordenador', 'Engenheiro', 'Gerente', 'Analista', 'Professor', 'Consultor', 'Diretor', 'Especialista', 'Mestre']):
+            if not info['headline']:
+                # Junta linhas consecutivas que fazem parte do headline
+                headline_lines = [line.strip()]
+                
+                # Verifica próximas linhas se continuam o headline
+                j = i + 1
+                while j < len(lines):
+                    next_line = lines[j].strip()
+                    
+                    # Para se encontrar palavras-chave que indicam fim do headline
+                    if next_line and not ('|' in next_line or any(title in next_line for title in ['Coordenador', 'Engenheiro', 'Gerente', 'Analista', 'Professor', 'Consultor', 'Diretor', 'Especialista', 'Mestre', 'Automotiva', 'Elétricos', 'Híbridos'])):
+                        break
+                    
+                    # Se linha está vazia ou tem "Curitiba" (localização), para
+                    if not next_line or 'Curitiba' in next_line or 'Brasil' in next_line or 'São Paulo' in next_line:
+                        break
+                    
+                    headline_lines.append(next_line)
+                    j += 1
+                
+                # Junta as linhas do headline
+                info['headline'] = ' '.join(headline_lines)
+                
+                # Remove múltiplos espaços
+                info['headline'] = re.sub(r'\s+', ' ', info['headline']).strip()
+                break
     
     # Extrai localização
     city_pattern = r'(?:Curitiba|São Paulo|Rio de Janeiro|Belo Horizonte|Brasília|Salvador|Fortaleza|Manaus|Recife|Porto Alegre|Goiânia|Belém|Guarulhos|Campinas|São Bernardo do Campo|Santo André|Osasco|Mauá|São Caetano do Sul|Diadema|Sorocaba|Jundiaí|Piracicaba|Ribeirão Preto|Araraquara|Bauru|Presidente Prudente|Marília|Barueri|Maringá|Londrina|Cascavel|Foz do Iguaçu|Ponta Grossa|Paranaguá|Blumenau|Brusque|Joinville|Florianópolis|Lages|Chapecó|Criciúma|Itajaí|Pelotas|Rio Grande|Santa Maria|Novo Hamburgo|Gramado|Canoas|Caxias do Sul|Viamão|Alvorada|Sapucaia do Sul|Campo Bom|Cachoeirinha|Esteio|Gravataí|São Leopoldo)\s*,\s*(?:Paraná|São Paulo|Rio de Janeiro|Minas Gerais|Bahia|Ceará|Amazonas|Pernambuco|Rio Grande do Sul|Goiás|Pará|Maranhão|Santa Catarina|Paraíba|Espírito Santo|Piauí|Rio Grande do Norte|Alagoas|Mato Grosso|Mato Grosso do Sul|Distrito Federal|Acre|Amapá|Rondônia|Roraima|Tocantins)'
@@ -109,17 +160,37 @@ def validate_content(text):
     return len(found_keywords) > 0, found_keywords
 
 def extract_relevant_experience(text):
-    """Extrai apenas as experiências profissionais (até 2 primeiras)"""
-    # Tenta encontrar a seção de experiência
-    exp_section = re.search(r'Experiência(.*?)(?:Formação|Educação|Skills|Competências|$)', text, re.DOTALL | re.IGNORECASE)
+    """Extrai o resumo profissional com quebra de linha a cada 12 palavras"""
+    # Tenta encontrar a seção "Resumo"
+    resumo_section = re.search(r'Resumo\s*(.*?)(?:\nExperiência|\nFormação|\nEducação|\nSkills|\nCompetências|$)', text, re.DOTALL | re.IGNORECASE)
     
-    if exp_section:
-        exp_text = exp_section.group(1)
-        # Limita para evitar muita informação
-        lines = exp_text.split('\n')
-        # Retorna até 30 linhas (aproximadamente 2 experiências)
-        relevant = '\n'.join(lines[:30])
-        return relevant.strip()
+    if resumo_section:
+        resumo_text = resumo_section.group(1).strip()
+        
+        # Divide por parágrafos (duas ou mais quebras de linha)
+        paragraphs = re.split(r'\n\s*\n+', resumo_text)
+        
+        if paragraphs:
+            # Processa cada parágrafo
+            processed_paragraphs = []
+            for para in paragraphs:
+                para = para.strip()
+                if para:  # Se parágrafo não está vazio
+                    # Remove quebras de linha internas e normaliza espaços
+                    para = re.sub(r'\n+', ' ', para)
+                    para = re.sub(r'\s+', ' ', para).strip()
+                    
+                    # Adiciona quebra de linha a cada 12 palavras
+                    words = para.split()
+                    lines = []
+                    for i in range(0, len(words), 12):
+                        lines.append(' '.join(words[i:i+12]))
+                    
+                    processed_paragraphs.append('\n'.join(lines))
+            
+            # Junta parágrafos com quebra de linha dupla
+            return '\n\n'.join(processed_paragraphs)
+    
     return ""
 
 def format_output(pdf_name, info, full_text):
@@ -139,11 +210,8 @@ Nome: {info['nome'] or 'Não identificado'}
 Email: {info['email'] or 'Não identificado'}
 Telefone: {info['telefone'] or 'Não identificado'}
 LinkedIn: {info['linkedin'] or 'Não identificado'}
+Cargo: {info['headline'] or 'Não identificado'}
 Localização: {info['localizacao'] or 'Não identificado'}
-
-💼 HEADLINE PROFISSIONAL
-─────────────────────────────────────────────────────────────
-{info['headline'] or 'Não identificado'}
 
 ═══════════════════════════════════════════════════════════
 

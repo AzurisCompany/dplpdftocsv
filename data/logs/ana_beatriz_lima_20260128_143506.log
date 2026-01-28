@@ -1,0 +1,11 @@
+2026-01-28 14:35:06,765 - INFO - ============================================================
+2026-01-28 14:35:06,765 - INFO - Iniciando processamento: ana_beatriz_lima.pdf
+2026-01-28 14:35:06,765 - INFO - Caminho: C:\Users\User\Documents\dplpdftocsv\data\raw_pdfs\ana_beatriz_lima.pdf
+2026-01-28 14:35:06,765 - INFO - Encoding: utf-8
+2026-01-28 14:35:06,784 - INFO - Texto extraído com sucesso (4087 caracteres)
+2026-01-28 14:35:06,785 - INFO - Validação bem-sucedida. Palavras-chave: ['linkedin', 'experiência', 'coordena']
+2026-01-28 14:35:06,787 - INFO - Informações extraídas: Nome=Alessandro Kulitch, Email=a.kulitch@gmail.com, LinkedIn=linkedin.com/in/alessandro-kulitch
+2026-01-28 14:35:06,790 - INFO - TXT gerado com sucesso: ana_beatriz_lima.txt
+2026-01-28 14:35:06,790 - INFO - Caminho de saída: C:\Users\User\Documents\dplpdftocsv\data\txt\ana_beatriz_lima.txt
+2026-01-28 14:35:06,790 - INFO - ============================================================
+

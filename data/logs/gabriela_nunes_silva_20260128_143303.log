@@ -1,0 +1,11 @@
+2026-01-28 14:33:03,590 - INFO - ============================================================
+2026-01-28 14:33:03,590 - INFO - Iniciando processamento: gabriela_nunes_silva.pdf
+2026-01-28 14:33:03,590 - INFO - Caminho: C:\Users\User\Documents\dplpdftocsv\data\raw_pdfs\gabriela_nunes_silva.pdf
+2026-01-28 14:33:03,590 - INFO - Encoding: utf-8
+2026-01-28 14:33:03,616 - INFO - Texto extraído com sucesso (3588 caracteres)
+2026-01-28 14:33:03,616 - INFO - Validação bem-sucedida. Palavras-chave: ['linkedin', 'experiência', 'name']
+2026-01-28 14:33:03,618 - INFO - Informações extraídas: Nome=Guilherme Celente, Email=None, LinkedIn=linkedin.com/in/guilherme-celente-7105ba2bb
+2026-01-28 14:33:03,621 - INFO - TXT gerado com sucesso: gabriela_nunes_silva.txt
+2026-01-28 14:33:03,621 - INFO - Caminho de saída: C:\Users\User\Documents\dplpdftocsv\data\txt\gabriela_nunes_silva.txt
+2026-01-28 14:33:03,621 - INFO - ============================================================
+

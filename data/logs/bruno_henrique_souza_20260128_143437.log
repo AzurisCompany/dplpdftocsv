@@ -1,0 +1,11 @@
+2026-01-28 14:34:37,855 - INFO - ============================================================
+2026-01-28 14:34:37,856 - INFO - Iniciando processamento: bruno_henrique_souza.pdf
+2026-01-28 14:34:37,856 - INFO - Caminho: C:\Users\User\Documents\dplpdftocsv\data\raw_pdfs\bruno_henrique_souza.pdf
+2026-01-28 14:34:37,856 - INFO - Encoding: utf-8
+2026-01-28 14:34:37,896 - INFO - Texto extraído com sucesso (1222 caracteres)
+2026-01-28 14:34:37,897 - INFO - Validação bem-sucedida. Palavras-chave: ['linkedin', 'experiência', 'habilidades']
+2026-01-28 14:34:37,900 - INFO - Informações extraídas: Nome=Vinicius Pagani, Email=vinipagani2002@gmail.com, LinkedIn=linkedin.com/in/vinicius-pagani-bcc
+2026-01-28 14:34:37,901 - INFO - TXT gerado com sucesso: bruno_henrique_souza.txt
+2026-01-28 14:34:37,902 - INFO - Caminho de saída: C:\Users\User\Documents\dplpdftocsv\data\txt\bruno_henrique_souza.txt
+2026-01-28 14:34:37,902 - INFO - ============================================================
+

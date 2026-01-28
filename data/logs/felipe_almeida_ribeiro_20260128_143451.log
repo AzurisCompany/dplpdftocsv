@@ -1,0 +1,11 @@
+2026-01-28 14:34:51,478 - INFO - ============================================================
+2026-01-28 14:34:51,478 - INFO - Iniciando processamento: felipe_almeida_ribeiro.pdf
+2026-01-28 14:34:51,479 - INFO - Caminho: C:\Users\User\Documents\dplpdftocsv\data\raw_pdfs\felipe_almeida_ribeiro.pdf
+2026-01-28 14:34:51,479 - INFO - Encoding: utf-8
+2026-01-28 14:34:51,511 - INFO - Texto extraído com sucesso (2916 caracteres)
+2026-01-28 14:34:51,511 - INFO - Validação bem-sucedida. Palavras-chave: ['linkedin', 'experiência']
+2026-01-28 14:34:51,514 - INFO - Informações extraídas: Nome=None, Email=o.caioongaro@gmail.com, LinkedIn=linkedin.com/in/caioongaro
+2026-01-28 14:34:51,515 - INFO - TXT gerado com sucesso: felipe_almeida_ribeiro.txt
+2026-01-28 14:34:51,516 - INFO - Caminho de saída: C:\Users\User\Documents\dplpdftocsv\data\txt\felipe_almeida_ribeiro.txt
+2026-01-28 14:34:51,516 - INFO - ============================================================
+

@@ -1,0 +1,11 @@
+2026-01-28 14:32:55,305 - INFO - ============================================================
+2026-01-28 14:32:55,305 - INFO - Iniciando processamento: henrique_carvalho_menezes.pdf
+2026-01-28 14:32:55,305 - INFO - Caminho: C:\Users\User\Documents\dplpdftocsv\data\raw_pdfs\henrique_carvalho_menezes.pdf
+2026-01-28 14:32:55,305 - INFO - Encoding: utf-8
+2026-01-28 14:32:55,355 - INFO - Texto extraído com sucesso (4426 caracteres)
+2026-01-28 14:32:55,355 - INFO - Validação bem-sucedida. Palavras-chave: ['linkedin', 'experiência', 'name', 'profissional', 'skills']
+2026-01-28 14:32:55,357 - INFO - Informações extraídas: Nome=fabio_allfa@hotmail.com www.linkedin.com/in/fabio-r, Email=fabio_allfa@hotmail.com, LinkedIn=linkedin.com/in/fabio-r-magalhaes
+2026-01-28 14:32:55,359 - INFO - TXT gerado com sucesso: henrique_carvalho_menezes.txt
+2026-01-28 14:32:55,359 - INFO - Caminho de saída: C:\Users\User\Documents\dplpdftocsv\data\txt\henrique_carvalho_menezes.txt
+2026-01-28 14:32:55,359 - INFO - ============================================================
+
