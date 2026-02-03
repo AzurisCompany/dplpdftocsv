@@ -4,6 +4,10 @@
 
 Sistema automatizado para extrair informações de portfolios em PDF de candidatos a um congresso. O sistema valida, processa e organiza os arquivos conforme o status de sucesso ou erro.
 
+## Importante
+
+Adicione a chave API da OPENAI (Meu caso) no código main.py
+
 ## 🗂️ Estrutura de Diretórios
 
 ```
@@ -14,11 +18,13 @@ Estrutura-Congresso/
 │   ├── quarantine/        # PDFs com erro no processamento
 │   ├── txt/               # Arquivos TXT extraídos
 │   └── logs/              # Logs de processamento
-├── docs/                  # Documentação adicional
+├── docs/                  # Documentação adicional (Nesse código é necessário adicionar um CSV com as informações que não foi  possivel obter do txt. Isso caso utilize a main para obter um CSV)
 ├── src/                   # Scripts Python
 │   ├── pdf_to_txt.py      # Processador individual de PDF
 │   └── batch_processor.py # Processador em lote
 ├── .gitignore
+├── LICENSE
+├── main.py
 └── ReadMe.md
 ```
 
@@ -33,7 +39,7 @@ Estrutura-Congresso/
 Instale as dependências necessárias:
 
 ```bash
-pip install PyPDF2
+pip install PyPDF2 openai pandas pydantic
 ```
 
 ## 💻 Uso
@@ -41,7 +47,7 @@ pip install PyPDF2
 ### Processar um PDF individual
 
 ```bash
-python src\pdf_to_txt.py --input data\raw_pdfs\rodrigo-bittencourt.pdf --output data\txt --encoding utf-8
+python src\pdf_to_txt.py --input data\raw_pdfs\nome-do-pdf.pdf --output data\txt --encoding utf-8
 ```
 
 **Argumentos:**
@@ -65,6 +71,15 @@ Este comando:
 3. Move PDFs com erro para `data/quarantine/`
 4. Gera arquivos TXT em `data/txt/`
 5. Registra logs em `data/logs/`
+
+### Gerar CSV final (main.py)
+
+```bash
+python main.py
+```
+
+Este comando:
+1. Compara o TXT com o CSV completo, verificando as informações que não vieram corretamente
 
 ## 📊 Fluxo de Processamento
 
