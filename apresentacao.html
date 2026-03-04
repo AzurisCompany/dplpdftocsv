@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro de Dados - Apresentação</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0d1a;
+            --bg-slide: #0e1027;
+            --bg-card: #141630;
+            --border: #1c1f3d;
+            --text: #e4e6f0;
+            --text-dim: #8a8db5;
+            --text-muted: #4e5180;
+            --accent: #4f6ef7;
+            --accent-light: #7b93ff;
+            --accent-glow: rgba(79, 110, 247, 0.12);
+            --green: #00e676;
+            --orange: #ff9100;
+            --cyan: #00e5ff;
+            --red: #ff5252;
+            --purple: #b388ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAV ─── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(11, 13, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 32px;
+        }
+
+        .nav-brand {
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-brand span { color: var(--accent-light); }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .slide-counter {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 52px; left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            z-index: 101;
+            transition: width 0.4s ease;
+        }
+
+        /* ─── SLIDES CONTAINER ─── */
+        .slides-wrapper {
+            padding-top: 70px;
+        }
+
+        .slide {
+            display: none;
+            min-height: calc(100vh - 70px);
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active { display: flex; }
+
+        .slide-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: calc(100vh - 190px);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ─── DECORATIVE SHAPES ─── */
+        .deco-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .deco-1 {
+            width: 400px; height: 400px;
+            background: rgba(79, 110, 247, 0.08);
+            top: -80px; right: -80px;
+        }
+
+        .deco-2 {
+            width: 300px; height: 300px;
+            background: rgba(0, 229, 255, 0.05);
+            bottom: -60px; left: -60px;
+        }
+
+        .deco-accent {
+            position: absolute;
+            width: 4px;
+            height: 120px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            border-radius: 4px;
+            top: 80px;
+            left: 40px;
+        }
+
+        /* ─── TYPOGRAPHY ─── */
+        .slide-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+        }
+
+        .slide-tag::before {
+            content: '';
+            width: 20px; height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .slide-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .slide-title .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-text {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            line-height: 1.75;
+            max-width: 800px;
+            font-weight: 300;
+        }
+
+        /* ─── COVER SLIDE ─── */
+        .cover-layout {
+            text-align: center;
+            align-items: center;
+        }
+
+        .cover-layout .slide-title {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+        }
+
+        .cover-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            font-weight: 300;
+            margin-bottom: 12px;
+        }
+
+        .cover-company {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: inline-block;
+        }
+
+        /* ─── STEP CARDS ─── */
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .step-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(79, 110, 247, 0.08);
+        }
+
+        .step-card:hover::before { opacity: 1; }
+
+        .step-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            opacity: 0.6;
+            margin-bottom: 8px;
+        }
+
+        .step-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* ─── FILE TREE ─── */
+        .file-tree {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-top: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 2;
+        }
+
+        .file-tree .folder { color: var(--accent-light); font-weight: 700; }
+        .file-tree .comment { color: var(--text-muted); }
+
+        /* ─── CODE BLOCK ─── */
+        .code-block {
+            background: #080a16;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 22px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--green);
+            margin-top: 16px;
+            overflow-x: auto;
+        }
+
+        .code-block .prompt { color: var(--text-muted); user-select: none; }
+        .code-block .flag { color: var(--orange); }
+        .code-block .string { color: var(--cyan); }
+
+        /* ─── BULLET LIST ─── */
+        .bullet-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .bullet-list li {
+            padding: 10px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+            border-bottom: 1px solid rgba(28, 31, 61, 0.4);
+        }
+
+        .bullet-list li:last-child { border-bottom: none; }
+
+        .bullet-list li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 16px;
+            width: 8px; height: 8px;
+            border-radius: 3px;
+            background: var(--accent);
+        }
+
+        /* ─── DEPS GRID ─── */
+        .deps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .dep-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .dep-chip:hover {
+            border-color: var(--accent);
+            transform: scale(1.03);
+        }
+
+        .dep-chip .dep-icon { font-size: 1.4rem; margin-bottom: 6px; }
+        .dep-chip .dep-name { color: var(--text); }
+        .dep-chip .dep-desc { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 400; }
+
+        /* ─── ETAPA LAYOUT ─── */
+        .etapa-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .etapa-badge {
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            color: white;
+            font-weight: 800;
+            font-size: 1.6rem;
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .etapa-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent-light);
+            margin-top: 2px;
+        }
+
+        /* ─── FIELDS GRID ─── */
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .field-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+
+        .field-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .field-icon {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .fi-blue { background: rgba(79, 110, 247, 0.15); }
+        .fi-green { background: rgba(0, 230, 118, 0.12); }
+        .fi-cyan { background: rgba(0, 229, 255, 0.12); }
+        .fi-orange { background: rgba(255, 145, 0, 0.12); }
+        .fi-purple { background: rgba(179, 136, 255, 0.12); }
+
+        .field-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        /* ─── STRATEGY CARDS ─── */
+        .strategy-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .strategy-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .strategy-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .strategy-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .strat-free { color: var(--green); }
+        .strat-ai { color: var(--purple); }
+
+        .strategy-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .strategy-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        .strategy-extras {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .strategy-extras span {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            padding: 3px 10px;
+            margin: 3px 4px 3px 0;
+            color: var(--text-dim);
+        }
+
+        /* ─── CSV PREVIEW ─── */
+        .csv-preview {
+            background: #080a16;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-top: 24px;
+        }
+
+        .csv-preview table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            min-width: 700px;
+        }
+
+        .csv-preview th {
+            padding: 14px 16px;
+            text-align: left;
+            color: var(--accent-light);
+            font-weight: 700;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .csv-preview td {
+            padding: 12px 16px;
+            color: var(--text-dim);
+            border-bottom: 1px solid rgba(28, 31, 61, 0.3);
+            white-space: nowrap;
+        }
+
+        /* ─── GAIO FEATURES ─── */
+        .gaio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .gaio-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .gaio-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .gaio-card .gc-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .gaio-card h4 {
+            font-size: 0.92rem;
+            margin-bottom: 4px;
+        }
+
+        .gaio-card p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ─── CHART IMAGE ─── */
+        .chart-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 28px;
+            text-align: center;
+        }
+
+        .chart-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .chart-caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* ─── PIPELINE DRAWING ─── */
+        .pipeline-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .pipe-node {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 28px;
+            text-align: center;
+            transition: all 0.3s;
+            min-width: 140px;
+        }
+
+        .pipe-node:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 24px var(--accent-glow);
+            transform: scale(1.05);
+        }
+
+        .pipe-node .pn-icon { font-size: 1.8rem; margin-bottom: 6px; }
+        .pipe-node .pn-label { font-weight: 700; font-size: 0.85rem; }
+        .pipe-node .pn-sub { font-size: 0.7rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+        .pipe-arrow {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin: 0 6px;
+            flex-shrink: 0;
+        }
+
+        /* ─── SVG ILLUSTRATIONS ─── */
+        .illustration {
+            display: flex;
+            justify-content: center;
+            margin-top: 32px;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .slide { padding: 40px 20px; }
+            .nav { padding: 12px 16px; }
+            .strategy-row { grid-template-columns: 1fr; }
+            .pipeline-visual { flex-direction: column; }
+            .pipe-arrow { transform: rotate(90deg); }
+        }
+
+        /* ─── KEYBOARD HINT ─── */
+        .kb-hint {
+            position: fixed;
+            bottom: 20px; right: 24px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            z-index: 50;
+        }
+
+        .kb-hint kbd {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="nav-brand">AZURIS <span>COMPANY</span></div>
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="prevSlide()">← Anterior</button>
+        <span class="slide-counter" id="counter">1 / 16</span>
+        <button class="nav-btn" onclick="nextSlide()">Próximo →</button>
+    </div>
+</nav>
+<div class="progress-bar" id="progress"></div>
+
+<div class="slides-wrapper">
+
+    <!-- SLIDE 1 - CAPA -->
+    <div class="slide active" id="slide-1">
+        <div class="deco-shape deco-1"></div>
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner cover-layout">
+            <div class="cover-subtitle">UM GUIA DE COMO</div>
+            <h1 class="slide-title"><span class="highlight">FILTRAR OS DADOS</span></h1>
+            <div class="cover-subtitle">PARA CRIAÇÃO DE TABELAS</div>
+            <div class="cover-company">AZURIS COMPANY</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide" id="slide-2">
+        <div class="deco-accent"></div>
+        <div class="deco-shape deco-1"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Introdução</div>
+            <h2 class="slide-title">O QUE É O <span class="highlight">SISTEMA?</span></h2>
+            <p class="slide-text">É uma pipeline de engenharia de dados responsável por transformar portfólios em PDF (não estruturados) em dados estruturados no formato CSV, prontos para ingestão em ambiente analítico (ClickHouse / GAIO).</p>
+            <div class="illustration">
+                <svg width="500" height="120" viewBox="0 0 500 120">
+                    <rect x="10" y="30" width="100" height="60" rx="12" fill="#141630" stroke="#4f6ef7" stroke-width="1.5"/>
+                    <text x="60" y="55" text-anchor="middle" fill="#ff5252" font-size="22">📄</text>
+                    <text x="60" y="78" text-anchor="middle" fill="#8a8db5" font-family="Outfit" font-size="11" font-weight="600">PDF</text>
+                    <path d="M120 60 L170 60" stroke="#4f6ef7" stroke-width="2" stroke-dasharray="6,4"/>
+                    <polygon points="168,55 178,60 168,65" fill="#4f6ef7"/>
+                    <rect x="185" y="30" width="120" height="60" rx="12" fill="#141630" stroke="#00e5ff" stroke-width="1.5"/>
+                    <text x="245" y="55" text-anchor="middle" fill="#00e5ff" font-size="22">⚙️</text>
+                    <text x="245" y="78" text-anchor="middle" fill="#8a8db5" font-family="Outfit" font-size="11" font-weight="600">Pipeline IA</text>
+                    <path d="M315 60 L365 60" stroke="#00e5ff" stroke-width="2" stroke-dasharray="6,4"/>
+                    <polygon points="363,55 373,60 363,65" fill="#00e5ff"/>
+                    <rect x="380" y="30" width="100" height="60" rx="12" fill="#141630" stroke="#00e676" stroke-width="1.5"/>
+                    <text x="430" y="55" text-anchor="middle" fill="#00e676" font-size="22">📊</text>
+                    <text x="430" y="78" text-anchor="middle" fill="#8a8db5" font-family="Outfit" font-size="11" font-weight="600">CSV</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide" id="slide-3">
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Motivação</div>
+            <h2 class="slide-title">POR QUE O SISTEMA <span class="highlight">FOI CRIADO?</span></h2>
+            <p class="slide-text">Os currículos exportados do LinkedIn são documentos textuais livres. Sem estruturação, não é possível realizar consultas SQL, gerar dashboards ou cruzar dados com bases internas. O sistema automatiza esse processo reduzindo erros manuais e padronizando o modelo de dados.</p>
+            <div class="illustration">
+                <svg width="460" height="140" viewBox="0 0 460 140">
+                    <!-- Before -->
+                    <rect x="10" y="10" width="180" height="120" rx="12" fill="#141630" stroke="#ff5252" stroke-width="1.5"/>
+                    <text x="100" y="40" text-anchor="middle" fill="#ff5252" font-family="Outfit" font-size="12" font-weight="700">❌ ANTES</text>
+                    <text x="100" y="62" text-anchor="middle" fill="#4e5180" font-family="JetBrains Mono" font-size="9">João é desenvolvedor</text>
+                    <text x="100" y="78" text-anchor="middle" fill="#4e5180" font-family="JetBrains Mono" font-size="9">com 10 anos de exp...</text>
+                    <text x="100" y="94" text-anchor="middle" fill="#4e5180" font-family="JetBrains Mono" font-size="9">trabalhou na Tech Corp</text>
+                    <text x="100" y="115" text-anchor="middle" fill="#ff5252" font-family="Outfit" font-size="10">Texto livre</text>
+                    <!-- Arrow -->
+                    <path d="M200 70 L260 70" stroke="#4f6ef7" stroke-width="2"/>
+                    <polygon points="258,65 268,70 258,75" fill="#4f6ef7"/>
+                    <!-- After -->
+                    <rect x="275" y="10" width="180" height="120" rx="12" fill="#141630" stroke="#00e676" stroke-width="1.5"/>
+                    <text x="365" y="40" text-anchor="middle" fill="#00e676" font-family="Outfit" font-size="12" font-weight="700">✅ DEPOIS</text>
+                    <text x="365" y="62" text-anchor="middle" fill="#8a8db5" font-family="JetBrains Mono" font-size="9">Nome: João</text>
+                    <text x="365" y="78" text-anchor="middle" fill="#8a8db5" font-family="JetBrains Mono" font-size="9">Cargo: Senior Dev</text>
+                    <text x="365" y="94" text-anchor="middle" fill="#8a8db5" font-family="JetBrains Mono" font-size="9">Empresa: Tech Corp</text>
+                    <text x="365" y="115" text-anchor="middle" fill="#00e676" font-family="Outfit" font-size="10">Estruturado</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide" id="slide-4">
+        <div class="deco-shape deco-1"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Visão Geral</div>
+            <h2 class="slide-title">COMO O SISTEMA <span class="highlight">FUNCIONA?</span></h2>
+            <p class="slide-text">O sistema opera em três etapas desacopladas:</p>
+            <div class="steps-row">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <h3>Extração</h3>
+                    <p>PDF → TXT — Leitura e extração do conteúdo textual dos currículos em PDF.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <h3>Organização</h3>
+                    <p>Validação em lote — Processamento em massa com separação de erros e sucessos.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <h3>Estruturação</h3>
+                    <p>TXT → CSV — Enriquecimento via OpenAI com classificação de importância.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide" id="slide-5">
+        <div class="deco-accent"></div>
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Arquitetura</div>
+            <h2 class="slide-title">ESTRUTURAÇÃO DE <span class="highlight">ARQUIVOS</span></h2>
+            <p class="slide-text">Na pasta data/ é onde separamos nossos arquivos por função:</p>
+            <div class="file-tree">
+                <span class="folder">data/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">raw_pdfs/</span> <span class="comment">── PDF's a processar</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">comp_pdfs/</span> <span class="comment">── PDF's processados ✅</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">quarantine/</span> <span class="comment">── PDF's com erros ⚠️</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">txt/</span> <span class="comment">── TXT gerados a partir do PDF</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">logs/</span> <span class="comment">── Logs por PDF</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">cache/</span> <span class="comment">── Arquivo JSONL do main.py</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">output/</span> <span class="comment">── CSV finais 📊</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6 -->
+    <div class="slide" id="slide-6">
+        <div class="deco-shape deco-1"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Setup</div>
+            <h2 class="slide-title">DEPENDÊNCIAS E <span class="highlight">CONFIGURAÇÃO</span></h2>
+            <div class="deps-grid">
+                <div class="dep-chip">
+                    <div class="dep-icon">🐍</div>
+                    <div class="dep-name">Python 3.7+</div>
+                    <div class="dep-desc">Runtime</div>
+                </div>
+                <div class="dep-chip">
+                    <div class="dep-icon">📄</div>
+                    <div class="dep-name">PyPDF2</div>
+                    <div class="dep-desc">Leitura de PDFs</div>
+                </div>
+                <div class="dep-chip">
+                    <div class="dep-icon">🐼</div>
+                    <div class="dep-name">pandas</div>
+                    <div class="dep-desc">Manipulação de dados</div>
+                </div>
+                <div class="dep-chip">
+                    <div class="dep-icon">✅</div>
+                    <div class="dep-name">pydantic</div>
+                    <div class="dep-desc">Validação de schema</div>
+                </div>
+                <div class="dep-chip">
+                    <div class="dep-icon">🤖</div>
+                    <div class="dep-name">openai</div>
+                    <div class="dep-desc">API de IA</div>
+                </div>
+            </div>
+            <p class="slide-text" style="margin-top: 20px;">O arquivo main.py exige uma chave API da OpenAI válida.</p>
+            <div class="code-block">
+                <span class="prompt">$ </span>pip install -r requirements.txt
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide" id="slide-7">
+        <div class="deco-accent"></div>
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner">
+            <div class="etapa-header">
+                <div class="etapa-badge">1</div>
+                <div>
+                    <h2 class="slide-title" style="margin-bottom:0">PRIMEIRA <span class="highlight">ETAPA</span></h2>
+                    <div class="etapa-meta">PDF → TXT (src/pdf_to_txt.py)</div>
+                </div>
+            </div>
+            <ul class="bullet-list">
+                <li>Recebe <code>--input</code> e <code>--output</code> via argparse</li>
+                <li>Cria logger dedicado em <code>data/logs/{pdf}_{timestamp}.log</code></li>
+                <li>Leitura do PDF com PyPDF2.PdfReader e concatena <code>page.extract_text()</code> de cada página</li>
+                <li>Se não houver texto retorna <code>status=1</code>, caso contrário grava <code>{pdf}.txt</code> em data/txt/</li>
+            </ul>
+            <div class="code-block">
+                <span class="prompt">$ </span>python src/pdf_to_txt.py <span class="flag">--input</span> <span class="string">data/raw_pdfs/candidato.pdf</span> <span class="flag">--output</span> <span class="string">data/txt</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8 -->
+    <div class="slide" id="slide-8">
+        <div class="deco-accent"></div>
+        <div class="deco-shape deco-1"></div>
+        <div class="slide-inner">
+            <div class="etapa-header">
+                <div class="etapa-badge">2</div>
+                <div>
+                    <h2 class="slide-title" style="margin-bottom:0">SEGUNDA <span class="highlight">ETAPA</span></h2>
+                    <div class="etapa-meta">Lote e Organização (src/batch_processor.py)</div>
+                </div>
+            </div>
+            <ul class="bullet-list">
+                <li>Varre <code>data/raw_pdfs/*.pdf</code></li>
+                <li>Para cada PDF, executa pdf_to_txt.py via <code>subprocess.run()</code></li>
+                <li>Se <code>returncode==0</code>, move para <code>data/comp_pdfs</code>, caso contrário move para <code>data/quarantine</code></li>
+                <li>Garantia: cria as pastas comp_pdfs, quarantine e txt caso elas não existam</li>
+            </ul>
+            <div class="code-block">
+                <span class="prompt">$ </span>python src/batch_processor.py
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9 -->
+    <div class="slide" id="slide-9">
+        <div class="deco-accent"></div>
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner">
+            <div class="etapa-header">
+                <div class="etapa-badge">3</div>
+                <div>
+                    <h2 class="slide-title" style="margin-bottom:0">TERCEIRA <span class="highlight">ETAPA</span></h2>
+                    <div class="etapa-meta">TXT → CSV + enriquecimento (main.py)</div>
+                </div>
+            </div>
+            <p class="slide-text">Objetivo: consolidar 1 linha por TXT e preencher campos com máxima confiabilidade, chamando OpenAI apenas quando necessário.</p>
+            <ul class="bullet-list">
+                <li>Detecta BASE_DIR (data ou Data), cria <code>data/output/</code> e <code>data/cache/</code></li>
+                <li>Lista TXTs em <code>data/txt/*.txt</code>; se não existir, aborta com diagnóstico</li>
+                <li>Carrega <code>cache.jsonl</code> (append-only) para reaproveitar resultados por SHA1 do texto</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SLIDE 10 -->
+    <div class="slide" id="slide-10">
+        <div class="deco-shape deco-1"></div>
+        <div class="slide-inner">
+            <div class="etapa-header">
+                <div class="etapa-badge">3</div>
+                <div>
+                    <h2 class="slide-title" style="margin-bottom:0">TERCEIRA <span class="highlight">ETAPA</span></h2>
+                    <div class="etapa-meta">Processamento por TXT (Pipeline)</div>
+                </div>
+            </div>
+            <ul class="bullet-list">
+                <li><strong>Cache:</strong> se SHA1 existe no cache, usa Participant do cache (cache hit)</li>
+                <li><strong>Parse KV:</strong> tenta extrair linhas 'campo: valor' (normalize_key + parse_kv)</li>
+                <li><strong>OpenAI (condicional):</strong> se faltar nome+linkedin+empresa+cargo+headline, chama responses.parse com schema Participant</li>
+                <li><strong>Registro:</strong> gera um arquivo .csv no caminho <code>data/output/{arquivo}.csv</code></li>
+                <li><strong>Arquivos finais:</strong> colunas do Participant — auditoria do LinkedIn (linkedin_txt, linkedin_norm, status, email_final, telefone_final)</li>
+            </ul>
+            <div class="code-block">
+                <span class="prompt">$ </span>python main.py
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11 -->
+    <div class="slide" id="slide-11">
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Dados</div>
+            <h2 class="slide-title">QUAL CONTEÚDO É <span class="highlight">TRATADO?</span></h2>
+            <div class="fields-grid">
+                <div class="field-card"><div class="field-icon fi-blue">👤</div><div class="field-name">Nome</div></div>
+                <div class="field-card"><div class="field-icon fi-green">📧</div><div class="field-name">Email</div></div>
+                <div class="field-card"><div class="field-icon fi-cyan">📱</div><div class="field-name">Telefone</div></div>
+                <div class="field-card"><div class="field-icon fi-blue">🔗</div><div class="field-name">LinkedIn</div></div>
+                <div class="field-card"><div class="field-icon fi-orange">🏢</div><div class="field-name">Empresa_Atual</div></div>
+                <div class="field-card"><div class="field-icon fi-purple">💼</div><div class="field-name">Cargo</div></div>
+                <div class="field-card"><div class="field-icon fi-cyan">📝</div><div class="field-name">Headline</div></div>
+                <div class="field-card"><div class="field-icon fi-green">📁</div><div class="field-name">Arquivo_Origem</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12 -->
+    <div class="slide" id="slide-12">
+        <div class="deco-shape deco-1"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Estratégias</div>
+            <h2 class="slide-title">COMO O TRATAMENTO <span class="highlight">É REALIZADO?</span></h2>
+            <div class="strategy-row">
+                <div class="strategy-card">
+                    <div class="strategy-label strat-free">Estratégia 01 — Sem custo</div>
+                    <h3>Parse KV</h3>
+                    <p>Se o TXT já estiver estruturado em formato chave:valor, a extração é direta.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-label strat-ai">Estratégia 02 — OpenAI</div>
+                    <h3>Modelo IA</h3>
+                    <p>Se o conteúdo estiver em texto livre, o modelo estrutura os dados automaticamente.</p>
+                </div>
+            </div>
+            <div class="strategy-extras" style="margin-top: 24px;">
+                <p class="slide-text" style="font-size: 0.9rem; margin-bottom: 12px;">Além disso:</p>
+                <span>Normalização de LinkedIn</span>
+                <span>Match exato com database.csv</span>
+                <span>Cache por hash SHA1</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13 -->
+    <div class="slide" id="slide-13">
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Output</div>
+            <h2 class="slide-title">QUAL MODELO DE DADOS <span class="highlight">É GERADO?</span></h2>
+            <p class="slide-text">O sistema gera um CSV tabular com uma linha por participante:</p>
+            <div class="csv-preview">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>LinkedIn</th>
+                            <th>Empresa_Atual</th>
+                            <th>Cargo</th>
+                            <th>Headline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>João Silva</td>
+                            <td>joao@email.com</td>
+                            <td>41987654321</td>
+                            <td>linkedin.com/in/joao</td>
+                            <td>Tech Corp</td>
+                            <td>Senior Dev</td>
+                            <td>Especialista Python</td>
+                        </tr>
+                        <tr>
+                            <td>Maria Santos</td>
+                            <td>maria@email.com</td>
+                            <td>49998765432</td>
+                            <td>linkedin.com/in/maria</td>
+                            <td>Finance Inc</td>
+                            <td>CFO</td>
+                            <td>Executiva Finanças</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 14 -->
+    <div class="slide" id="slide-14">
+        <div class="deco-shape deco-1"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Visualização</div>
+            <h2 class="slide-title">COMO OS DADOS SÃO APRESENTADOS <span class="highlight">NO GAIO?</span></h2>
+            <p class="slide-text">Após ingestão no ClickHouse, os dados podem ser explorados no GAIO através de:</p>
+            <div class="gaio-grid">
+                <div class="gaio-card"><div class="gc-icon">🔌</div><h4>Data Sources</h4><p>Conexão com banco</p></div>
+                <div class="gaio-card"><div class="gc-icon">📋</div><h4>Tables</h4><p>Visualização da tabela</p></div>
+                <div class="gaio-card"><div class="gc-icon">💻</div><h4>SQL Editor</h4><p>Consultas analíticas</p></div>
+                <div class="gaio-card"><div class="gc-icon">📊</div><h4>Dashboard</h4><p>Criação de gráficos</p></div>
+                <div class="gaio-card"><div class="gc-icon">📈</div><h4>Chart Builder</h4><p>Métricas e dimensões</p></div>
+            </div>
+            <p class="slide-text" style="margin-top: 20px; font-size: 0.9rem;">Exemplos: Participantes por Empresa (Bar Chart), Distribuição por Cargo (Pie Chart), Segmentação por nível hierárquico.</p>
+        </div>
+    </div>
+
+    <!-- SLIDE 15 -->
+    <div class="slide" id="slide-15">
+        <div class="deco-accent"></div>
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Pipeline</div>
+            <h2 class="slide-title">PIPELINE DENTRO <span class="highlight">DO GAIO</span></h2>
+            <p class="slide-text">Este é um pipeline usado para filtrar a quantidade de pessoas por cada estado baseado no DDD do seu número de telefone.</p>
+            <div class="pipeline-visual">
+                <div class="pipe-node">
+                    <div class="pn-icon">🗄️</div>
+                    <div class="pn-label">curriculos_raw</div>
+                    <div class="pn-sub">tabela origem</div>
+                </div>
+                <span class="pipe-arrow">→</span>
+                <div class="pipe-node">
+                    <div class="pn-icon">🔍</div>
+                    <div class="pn-label">toString(Tel)</div>
+                    <div class="pn-sub">substring(1,2)</div>
+                </div>
+                <span class="pipe-arrow">→</span>
+                <div class="pipe-node">
+                    <div class="pn-icon">🏷️</div>
+                    <div class="pn-label">CASE DDD</div>
+                    <div class="pn-sub">41=PR / 49=SC</div>
+                </div>
+                <span class="pipe-arrow">→</span>
+                <div class="pipe-node">
+                    <div class="pn-icon">📊</div>
+                    <div class="pn-label">curriculos_ddd</div>
+                    <div class="pn-sub">+ coluna Estado</div>
+                </div>
+            </div>
+            <div class="code-block" style="margin-top: 28px;">
+                <span style="color: var(--purple);">CREATE TABLE</span> curriculos_ddd<br>
+                <span style="color: var(--purple);">ENGINE</span> = MergeTree() <span style="color: var(--purple);">ORDER BY</span> tuple()<br>
+                <span style="color: var(--purple);">AS SELECT</span> *,<br>
+                &nbsp;&nbsp;<span style="color: var(--purple);">CASE</span> substring(toString(Telefone), 1, 2)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--purple);">WHEN</span> <span class="string">'41'</span> <span style="color: var(--purple);">THEN</span> <span class="string">'Paraná'</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--purple);">WHEN</span> <span class="string">'49'</span> <span style="color: var(--purple);">THEN</span> <span class="string">'Santa Catarina'</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--purple);">ELSE</span> <span class="string">'Outro'</span><br>
+                &nbsp;&nbsp;<span style="color: var(--purple);">END AS</span> Estado<br>
+                <span style="color: var(--purple);">FROM</span> curriculos_raw
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 16 -->
+    <div class="slide" id="slide-16">
+        <div class="deco-shape deco-1"></div>
+        <div class="deco-shape deco-2"></div>
+        <div class="slide-inner">
+            <div class="slide-tag">Resultado</div>
+            <h2 class="slide-title">GRÁFICOS DENTRO <span class="highlight">DO GAIO</span></h2>
+            <p class="slide-text">Após a criação do Pipeline, temos nosso resultado final: um gráfico em barras listando a quantidade de pessoas por estado, baseado em seu DDD.</p>
+            <div class="chart-container">
+                <img src="grafico_gaio.png" alt="Gráfico de barras - Pessoas por Estado (DDD)">
+                <div class="chart-caption">Dashboard GAIO — Quantidade de pessoas por estado baseado no DDD</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="kb-hint">
+    <kbd>←</kbd> <kbd>→</kbd> para navegar
+</div>
+
+<script>
+    let current = 1;
+    const total = 16;
+
+    function showSlide(n) {
+        if (n < 1 || n > total) return;
+        document.querySelector('.slide.active').classList.remove('active');
+        current = n;
+        const slide = document.getElementById('slide-' + current);
+        slide.classList.add('active');
+        slide.style.animation = 'none';
+        slide.offsetHeight;
+        slide.style.animation = 'slideIn 0.5s ease-out';
+        document.getElementById('counter').textContent = current + ' / ' + total;
+        document.getElementById('progress').style.width = (current / total * 100) + '%';
+    }
+
+    function nextSlide() { showSlide(current + 1); }
+    function prevSlide() { showSlide(current - 1); }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+    });
+
+    // Touch support
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+    });
+
+    // Init progress
+    document.getElementById('progress').style.width = (1 / total * 100) + '%';
+</script>
+
+</body>
+</html>
