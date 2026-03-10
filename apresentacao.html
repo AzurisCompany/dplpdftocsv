@@ -643,6 +643,22 @@
             margin-top: 32px;
         }
 
+        /* ─── TWO-COLUMN LAYOUT ─── */
+        .slide-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 24px;
+        }
+
+        .slide-img-right {
+            max-width: 100%;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
             .slide { padding: 40px 20px; }
@@ -650,6 +666,7 @@
             .strategy-row { grid-template-columns: 1fr; }
             .pipeline-visual { flex-direction: column; }
             .pipe-arrow { transform: rotate(90deg); }
+            .slide-cols { grid-template-columns: 1fr; }
         }
 
         /* ─── KEYBOARD HINT ─── */
@@ -856,14 +873,19 @@
                     <div class="etapa-meta">PDF → TXT (src/pdf_to_txt.py)</div>
                 </div>
             </div>
-            <ul class="bullet-list">
-                <li>Recebe <code>--input</code> e <code>--output</code> via argparse</li>
-                <li>Cria logger dedicado em <code>data/logs/{pdf}_{timestamp}.log</code></li>
-                <li>Leitura do PDF com PyPDF2.PdfReader e concatena <code>page.extract_text()</code> de cada página</li>
-                <li>Se não houver texto retorna <code>status=1</code>, caso contrário grava <code>{pdf}.txt</code> em data/txt/</li>
-            </ul>
-            <div class="code-block">
-                <span class="prompt">$ </span>python src/pdf_to_txt.py <span class="flag">--input</span> <span class="string">data/raw_pdfs/candidato.pdf</span> <span class="flag">--output</span> <span class="string">data/txt</span>
+            <div class="slide-cols">
+                <div class="slide-cols-text">
+                    <ul class="bullet-list">
+                        <li>Recebe <code>--input</code> e <code>--output</code> via argparse</li>
+                        <li>Cria logger dedicado em <code>data/logs/{pdf}_{timestamp}.log</code></li>
+                        <li>Leitura do PDF com PyPDF2.PdfReader e concatena <code>page.extract_text()</code> de cada página</li>
+                        <li>Se não houver texto retorna <code>status=1</code>, caso contrário grava <code>{pdf}.txt</code> em data/txt/</li>
+                    </ul>
+                    <div class="code-block">
+                        <span class="prompt">$ </span>python src/pdf_to_txt.py <span class="flag">--input</span> <span class="string">data/raw_pdfs/candidato.pdf</span> <span class="flag">--output</span> <span class="string">data/txt</span>
+                    </div>
+                </div>
+                <img src="pdf-txt.png" alt="PDF para TXT" class="slide-img-right">
             </div>
         </div>
     </div>
@@ -880,14 +902,19 @@
                     <div class="etapa-meta">Lote e Organização (src/batch_processor.py)</div>
                 </div>
             </div>
-            <ul class="bullet-list">
-                <li>Varre <code>data/raw_pdfs/*.pdf</code></li>
-                <li>Para cada PDF, executa pdf_to_txt.py via <code>subprocess.run()</code></li>
-                <li>Se <code>returncode==0</code>, move para <code>data/comp_pdfs</code>, caso contrário move para <code>data/quarantine</code></li>
-                <li>Garantia: cria as pastas comp_pdfs, quarantine e txt caso elas não existam</li>
-            </ul>
-            <div class="code-block">
-                <span class="prompt">$ </span>python src/batch_processor.py
+            <div class="slide-cols">
+                <div class="slide-cols-text">
+                    <ul class="bullet-list">
+                        <li>Varre <code>data/raw_pdfs/*.pdf</code></li>
+                        <li>Para cada PDF, executa pdf_to_txt.py via <code>subprocess.run()</code></li>
+                        <li>Se <code>returncode==0</code>, move para <code>data/comp_pdfs</code>, caso contrário move para <code>data/quarantine</code></li>
+                        <li>Garantia: cria as pastas comp_pdfs, quarantine e txt caso elas não existam</li>
+                    </ul>
+                    <div class="code-block">
+                        <span class="prompt">$ </span>python src/batch_processor.py
+                    </div>
+                </div>
+                <img src="batch.png" alt="Batch Processor" class="slide-img-right">
             </div>
         </div>
     </div>
@@ -904,12 +931,17 @@
                     <div class="etapa-meta">TXT → CSV + enriquecimento (main.py)</div>
                 </div>
             </div>
-            <p class="slide-text">Objetivo: consolidar 1 linha por TXT e preencher campos com máxima confiabilidade, chamando OpenAI apenas quando necessário.</p>
-            <ul class="bullet-list">
-                <li>Detecta BASE_DIR (data ou Data), cria <code>data/output/</code> e <code>data/cache/</code></li>
-                <li>Lista TXTs em <code>data/txt/*.txt</code>; se não existir, aborta com diagnóstico</li>
-                <li>Carrega <code>cache.jsonl</code> (append-only) para reaproveitar resultados por SHA1 do texto</li>
-            </ul>
+            <div class="slide-cols">
+                <div class="slide-cols-text">
+                    <p class="slide-text">Objetivo: consolidar 1 linha por TXT e preencher campos com máxima confiabilidade, chamando OpenAI apenas quando necessário.</p>
+                    <ul class="bullet-list">
+                        <li>Detecta BASE_DIR (data ou Data), cria <code>data/output/</code> e <code>data/cache/</code></li>
+                        <li>Lista TXTs em <code>data/txt/*.txt</code>; se não existir, aborta com diagnóstico</li>
+                        <li>Carrega <code>cache.jsonl</code> (append-only) para reaproveitar resultados por SHA1 do texto</li>
+                    </ul>
+                </div>
+                <img src="main.png" alt="main.py" class="slide-img-right">
+            </div>
         </div>
     </div>
 
@@ -1049,31 +1081,7 @@
             <div class="slide-tag">Pipeline</div>
             <h2 class="slide-title">PIPELINE DENTRO <span class="highlight">DO GAIO</span></h2>
             <p class="slide-text">Este é um pipeline usado para filtrar a quantidade de pessoas por cada estado baseado no DDD do seu número de telefone.</p>
-            <div class="pipeline-visual">
-                <div class="pipe-node">
-                    <div class="pn-icon">🗄️</div>
-                    <div class="pn-label">curriculos_raw</div>
-                    <div class="pn-sub">tabela origem</div>
-                </div>
-                <span class="pipe-arrow">→</span>
-                <div class="pipe-node">
-                    <div class="pn-icon">🔍</div>
-                    <div class="pn-label">toString(Tel)</div>
-                    <div class="pn-sub">substring(1,2)</div>
-                </div>
-                <span class="pipe-arrow">→</span>
-                <div class="pipe-node">
-                    <div class="pn-icon">🏷️</div>
-                    <div class="pn-label">CASE DDD</div>
-                    <div class="pn-sub">41=PR / 49=SC</div>
-                </div>
-                <span class="pipe-arrow">→</span>
-                <div class="pipe-node">
-                    <div class="pn-icon">📊</div>
-                    <div class="pn-label">curriculos_ddd</div>
-                    <div class="pn-sub">+ coluna Estado</div>
-                </div>
-            </div>
+            <img src="pipeline_gaio.png" alt="Pipeline GAIO" class="slide-img-right" style="max-width: 100%; margin-top: 24px;">
             <div class="code-block" style="margin-top: 28px;">
                 <span style="color: var(--purple);">CREATE TABLE</span> curriculos_ddd<br>
                 <span style="color: var(--purple);">ENGINE</span> = MergeTree() <span style="color: var(--purple);">ORDER BY</span> tuple()<br>
