@@ -6,11 +6,3 @@ __pycache__/
 .env
 .env.local
 .env.*.local
-
-# Dados (não commitar)
-data/
-!data/.gitkeep
-
-# Logs
-*.log
-logs/

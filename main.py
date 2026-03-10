@@ -354,16 +354,14 @@ def extract_empresa_only(client: OpenAI, text: str) -> Optional[str]:
 
 
 def main():
-    if not OPENAI_API_KEY or not OPENAI_API_KEY.strip().startswith("sk-"):
-        raise RuntimeError(
-            "OPENAI_API_KEY inválida.\n"
-            "Adicione em .env: OPENAI_API_KEY=sk-..."
-        )
+    has_openai = bool(OPENAI_API_KEY and OPENAI_API_KEY.strip().startswith("sk-"))
+    if not has_openai:
+        print("[AVISO] OPENAI_API_KEY nao configurada -- usando apenas extracao KV local.")
 
     ensure_dirs()
     files = list_txt_files()
 
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = OpenAI(api_key=OPENAI_API_KEY) if has_openai else None
     cache = load_cache()
 
     rows: List[Dict[str, Any]] = []
@@ -387,7 +385,7 @@ def main():
             kv = parse_kv(text)
             score = kv_score(kv)
 
-            if score >= 4:
+            if score >= 4 or not has_openai:
                 p = kv_to_participant(kv)
                 kv_only += 1
             else:
@@ -396,7 +394,7 @@ def main():
 
             p = finalize(p)
 
-            if not p.empresa_atual and (p.cargo or p.headline):
+            if not p.empresa_atual and (p.cargo or p.headline) and has_openai:
                 emp = extract_empresa_only(client, text)
                 openai_calls += 1
                 empresa_fallback += 1
@@ -406,7 +404,7 @@ def main():
             base_level = classify_importance_local_1to5(
                 p.empresa_atual or "", p.cargo or "", p.headline or ""
             )
-            if importance_needs_openai(p.empresa_atual or "", p.cargo or "", p.headline or "", base_level):
+            if has_openai and importance_needs_openai(p.empresa_atual or "", p.cargo or "", p.headline or "", base_level):
                 p.nivel_importancia = classify_importance_openai_1to5(
                     client, p.empresa_atual or "", p.cargo or "", p.headline or ""
                 )
@@ -423,7 +421,7 @@ def main():
             base_level = classify_importance_local_1to5(
                 p.empresa_atual or "", p.cargo or "", p.headline or ""
             )
-            if importance_needs_openai(p.empresa_atual or "", p.cargo or "", p.headline or "", base_level):
+            if has_openai and importance_needs_openai(p.empresa_atual or "", p.cargo or "", p.headline or "", base_level):
                 p.nivel_importancia = classify_importance_openai_1to5(
                     client, p.empresa_atual or "", p.cargo or "", p.headline or ""
                 )
@@ -443,16 +441,16 @@ def main():
             "Nivel_Importancia": p.nivel_importancia,
         })
 
-        print(f"✓ {base_name} | empresa: {p.empresa_atual} | nível: {p.nivel_importancia}")
+        print(f"[OK] {base_name} | empresa: {p.empresa_atual} | nivel: {p.nivel_importancia}")
 
     df = pd.DataFrame(rows)
     df.to_csv(OUT_CSV, index=False, encoding="utf-8-sig")
 
-    print(f"\n✅ CSV gerado em: {OUT_CSV}")
-    print(f"📊 Registros: {len(df)}")
-    print(f"📦 Cache hits: {cache_hits}")
-    print(f"🔄 OpenAI calls: {openai_calls} | KV-only: {kv_only} | Empresa fallback: {empresa_fallback}")
-    print(f"⭐ Importance OpenAI calls: {importance_openai_calls}")
+    print(f"\n[OK] CSV gerado em: {OUT_CSV}")
+    print(f"Registros: {len(df)}")
+    print(f"Cache hits: {cache_hits}")
+    print(f"OpenAI calls: {openai_calls} | KV-only: {kv_only} | Empresa fallback: {empresa_fallback}")
+    print(f"Importance OpenAI calls: {importance_openai_calls}")
 
 
 if __name__ == "__main__":
