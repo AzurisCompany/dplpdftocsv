@@ -885,7 +885,7 @@
                         <span class="prompt">$ </span>python src/pdf_to_txt.py <span class="flag">--input</span> <span class="string">data/raw_pdfs/candidato.pdf</span> <span class="flag">--output</span> <span class="string">data/txt</span>
                     </div>
                 </div>
-                <img src="pdf-txt.png" alt="PDF para TXT" class="slide-img-right">
+                <img src="./img/pdf-txt.png" alt="PDF para TXT" class="slide-img-right">
             </div>
         </div>
     </div>
@@ -914,7 +914,7 @@
                         <span class="prompt">$ </span>python src/batch_processor.py
                     </div>
                 </div>
-                <img src="batch.png" alt="Batch Processor" class="slide-img-right">
+                <img src="./img/batch.png" alt="Batch Processor" class="slide-img-right">
             </div>
         </div>
     </div>
@@ -940,7 +940,7 @@
                         <li>Carrega <code>cache.jsonl</code> (append-only) para reaproveitar resultados por SHA1 do texto</li>
                     </ul>
                 </div>
-                <img src="main.png" alt="main.py" class="slide-img-right">
+                <img src="./img/main.png" alt="main.py" class="slide-img-right">
             </div>
         </div>
     </div>
@@ -1081,7 +1081,7 @@
             <div class="slide-tag">Pipeline</div>
             <h2 class="slide-title">PIPELINE DENTRO <span class="highlight">DO GAIO</span></h2>
             <p class="slide-text">Este é um pipeline usado para filtrar a quantidade de pessoas por cada estado baseado no DDD do seu número de telefone.</p>
-            <img src="pipeline_gaio.png" alt="Pipeline GAIO" class="slide-img-right" style="max-width: 100%; margin-top: 24px;">
+            <img src="./img/pipeline_gaio.png" alt="Pipeline GAIO" class="slide-img-right" style="max-width: 100%; margin-top: 24px;">
             <div class="code-block" style="margin-top: 28px;">
                 <span style="color: var(--purple);">CREATE TABLE</span> curriculos_ddd<br>
                 <span style="color: var(--purple);">ENGINE</span> = MergeTree() <span style="color: var(--purple);">ORDER BY</span> tuple()<br>
@@ -1105,7 +1105,7 @@
             <h2 class="slide-title">GRÁFICOS DENTRO <span class="highlight">DO GAIO</span></h2>
             <p class="slide-text">Após a criação do Pipeline, temos nosso resultado final: um gráfico em barras listando a quantidade de pessoas por estado, baseado em seu DDD.</p>
             <div class="chart-container">
-                <img src="grafico_gaio.png" alt="Gráfico de barras - Pessoas por Estado (DDD)">
+                <img src="./img/grafico_gaio.png" alt="Gráfico de barras - Pessoas por Estado (DDD)">
                 <div class="chart-caption">Dashboard GAIO — Quantidade de pessoas por estado baseado no DDD</div>
             </div>
         </div>
