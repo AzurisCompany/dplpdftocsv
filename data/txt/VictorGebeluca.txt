@@ -1,0 +1,54 @@
+   
+Contato
+41997690891  (Mobile)
+victormiguel01@gmail.com
+www.linkedin.com/in/victor-
+gebeluca-2847ba267  (LinkedIn)
+victor-dev-portifolio-t7bf.vercel.app/
+(Portfolio)
+Principais competências
+Node.js
+SQL
+React.jsVictor Gebeluca
+Desenvolvedor em Formação | Stack: Node.js, TypeScript, Express,
+React, SQL, Git & GitHub
+Curitiba, Paraná, Brasil
+Resumo
+Olá! Sou um desenvolvedor em constante evolução, com
+foco principal no ecossistema JavaScript/TypeScript e no
+desenvolvimento Backend.
+Atualmente, dedico meus estudos à construção de aplicações
+escaláveis e performáticas. Recentemente, desenvolvi
+projetos que utilizam Node.js com Express e Socket.io para
+comunicação bidirecional em tempo real, o que me permitiu
+aprofundar conhecimentos em arquitetura baseada em eventos e
+gerenciamento de estados no servidor.
+No Frontend, utilizo React e Vite para criar interfaces modernas,
+responsivas e focadas na experiência do usuário, sempre
+priorizando um código limpo e organizado.
+Meu Stack Técnico:
+Backend: Node.js, TypeScript, Express, Socket.io (WebSockets).
+Frontend: React, Vite, CSS3/HTML5.
+Ferramentas: Git, GitHub, Vercel, Render.
+Estou em busca da minha primeira oportunidade como Estagiário
+de Desenvolvimento, onde eu possa contribuir com meus
+conhecimentos técnicos e aprender com profissionais experientes.
+Confira meus projetos: https://victor-dev-portifolio-t7bf.vercel.app/ ✉️
+Contato: victormiguel01@gmail.com
+Experiência
+  Page 1 of 2
+   
+Sascar
+Atendente - suporte ao cliente
+agosto de 2023 - outubro de 2025  (2 anos 3 meses)
+Responsável por fornecer suporte técnico a clientes, incluindo:
+- Diagnóstico e resolução de problemas de conectividade e falhas sistêmicas
+- Análise e interpretação de  relatórios de desempenho
+- Gerenciamento de incidentes e chamados técnicos
+- Implementação de soluções de manutenção do sistema
+Com expertise em sistemas de rastreamento automotivo,  ferramentas de
+diagnóstico, garantindo a máxima disponibilidade e desempenho do sistema.
+Formação acadêmica
+Universidade Positivo
+Tecnologo, Desenvolvimento de sistemas  · (janeiro de 2024 - junho de 2026)
+  Page 2 of 2
