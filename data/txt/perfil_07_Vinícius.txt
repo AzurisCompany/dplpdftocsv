@@ -1,0 +1,34 @@
+Vinícius Lopes Guimarães
+Machine Learning | Credit Scoring | Python | MLOps | Modelos que protegem e
+rentabilizam o banco
+Email: vinicius.guimaraes@empresa.net
+Telefone: (11) 92345-6789
+Cargo: Especialista em Machine Learning
+Empresa: Itaú Unibanco
+Resumo
+Especialista em machine learning com foco em aplicações no setor financeiro, incluindo modelos de
+crédito, detecção de fraude e propensão de compra. Tenho experiência no ciclo completo de
+desenvolvimento de modelos: da exploração e feature engineering ao deploy em produção e
+monitoramento contínuo. Atuo em um ambiente altamente regulado, equilibrando performance preditiva
+com interpretabilidade e conformidade.
+Experiência
+Especialista em Machine Learning
+Itaú Unibanco · julho de 2021 - Presente
+Desenvolvo e monitoro modelos de credit scoring utilizados na concessão de crédito para pessoa física
+e jurídica, impactando decisões que envolvem bilhões de reais mensalmente. Implementei uma
+infraestrutura de MLOps que reduziu o tempo de atualização de modelos em produção de semanas
+para dias. Colaboro com times de risco, compliance e tecnologia para garantir que os modelos sigam
+as diretrizes do Banco Central e as melhores práticas de IA responsável.
+Cientista de Dados Pleno
+Serasa Experian · fevereiro de 2019 - junho de 2021
+Desenvolvi modelos de propensão e segmentação de clientes para produtos do bureau de crédito.
+Trabalhei com grandes volumes de dados cadastrais e comportamentais para geração de scores e
+insights para clientes B2B. Participei de hackathons internos e apresentei resultados em conferências
+de analytics do setor.
+Formação Acadêmica
+Mestrado em Inteligência Artificial - UNICAMP, concluído em 2019. Bacharelado em Matemática
+Aplicada - USP, concluído em 2017.
+Principais Competências
+Python, Scikit-learn, XGBoost, LightGBM, MLflow, PySpark, SQL, Feature Engineering, MLOps,
+Interpretabilidade
+

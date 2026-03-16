@@ -1,0 +1,34 @@
+Camila Duarte Nascimento
+Engineering Management | Liderança Técnica | Agile | Cultura de Alto Desempenho |
+Pessoas primeiro, código depois
+Email: camila.nascimento@outlook.com
+Telefone: (51) 93401-5678
+Cargo: Gerente de Engenharia
+Empresa: Unico (ex-Acesso Digital)
+Resumo
+Gerente de engenharia com 8 anos de experiência em desenvolvimento de software e 4 anos em
+liderança técnica. Minha atuação é centrada em criar times de alta performance com cultura de
+colaboração, autonomia e entrega contínua de valor. Tenho experiência em contratação,
+desenvolvimento de carreira de engenheiros e estruturação de processos ágeis que equilibram
+velocidade e qualidade.
+Experiência
+Gerente de Engenharia
+Unico · janeiro de 2022 - Presente
+Gerencio três squads de produto com um total de 18 engenheiros, atuando em soluções de identidade
+digital e prevenção à fraude. Sou responsável pelo ciclo completo de gestão de pessoas: contratação,
+onboarding, desenvolvimento, feedbacks e planos de carreira. Implementei rituais de engenharia como
+Tech Talks semanais e hackathons trimestrais, impactando positivamente o engajamento e a retenção
+do time. Colaboro diretamente com o CPO e CTO na definição de roadmap técnico e alocação de
+recursos.
+Tech Lead
+Totvs · março de 2018 - dezembro de 2021
+Liderei tecnicamente uma squad de 7 engenheiros responsável por um dos módulos mais críticos da
+plataforma ERP da empresa. Conduzi a transição do time para práticas de DevOps e entrega contínua,
+reduzindo o ciclo de deploy de quinzenal para diário. Participei ativamente de processos seletivos e
+mentorei engenheiros juniores e plenos.
+Formação Acadêmica
+Bacharelado em Sistemas de Informação - PUCRS, concluído em 2015. Extensão em Gestão de
+Pessoas e Liderança - FIA Business School.
+Principais Competências
+Gestão de Times, Agile, Scrum, OKRs, Recrutamento Técnico, Java, Kotlin, Microsserviços, AWS
+

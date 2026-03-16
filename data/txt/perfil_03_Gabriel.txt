@@ -1,0 +1,33 @@
+Gabriel Torres Meneses
+DevOps | Kubernetes | CI/CD | Azure | Infraestrutura como Código | Acelerando
+entregas com segurança
+Email: gabriel.meneses@empresa.com.br
+Telefone: (41) 96723-4890
+Cargo: DevOps Engineer
+Empresa: TOTVS
+Resumo
+Engenheiro DevOps com 7 anos de experiência em automação de infraestrutura, orquestração de
+containers e cultura de entrega contínua. Atuo como facilitador entre os times de desenvolvimento e
+operações, garantindo que pipelines de CI/CD sejam eficientes, seguros e rastreáveis. Tenho histórico
+comprovado de redução de tempo de deploy e aumento da confiabilidade dos ambientes de produção
+em empresas de médio e grande porte do setor de tecnologia.
+Experiência
+DevOps Engineer Sênior
+TOTVS · maio de 2021 - Presente
+Lidero a evolução da plataforma de entrega contínua da empresa, migrando pipelines legados para o
+GitHub Actions com integração ao Azure DevOps. Implementei práticas de Infrastructure as Code com
+Terraform, permitindo provisionamento padronizado de ambientes em minutos. Coordenei a migração
+de aplicações críticas para Kubernetes, resultando em redução de 30% nos custos de infraestrutura e
+aumento significativo na disponibilidade dos sistemas.
+Analista de Infraestrutura DevOps
+Stefanini Group · janeiro de 2018 - abril de 2021
+Trabalhei em projetos de transformação digital para grandes clientes dos setores financeiro e industrial.
+Fui responsável pela configuração e manutenção de ambientes Docker e pipelines Jenkins. Realizei
+auditorias de segurança em ambientes de nuvem e implementei políticas de controle de acesso
+baseadas em papéis (RBAC).
+Formação Acadêmica
+Tecnólogo em Redes de Computadores - UTFPR, concluído em 2017. Certificações: CKA (Certified
+Kubernetes Administrator), AZ-900, Terraform Associate.
+Principais Competências
+Kubernetes, Docker, Terraform, Azure, GitHub Actions, Jenkins, Linux, Python, Ansible, Prometheus
+

@@ -1,0 +1,34 @@
+Priscila Tanaka Yamamoto
+Data Engineering | Airflow | Spark | Azure Data Factory | Agronegócio e Energia |
+Pipelines que movem decisões
+Email: priscila.tanaka@empresa.com.br
+Telefone: (11) 98890-1122
+Cargo: Engenheira de Dados
+Empresa: Raízen
+Resumo
+Engenheira de dados com 5 anos de experiência em construção de plataformas analíticas para o setor
+de energia e agronegócio. Tenho expertise em orquestração de pipelines ETL/ELT, modelagem de
+dados e integração de sistemas legados com plataformas modernas de dados em nuvem. Trabalho em
+um ambiente de alta complexidade operacional, onde a qualidade e pontualidade dos dados são
+críticas para decisões de produção e logística.
+Experiência
+Engenheira de Dados Plena
+Raízen · junho de 2022 - Presente
+Responsável pela construção e manutenção de pipelines de dados que consolidam informações de
+usinas de cana-de-açúcar, distribuidoras de combustíveis e operações de energia. Desenvolvi
+integrações com sistemas SCADA e SAP, permitindo visibilidade em tempo quase-real da produção.
+Implementei práticas de Data Quality com Great Expectations, reduzindo incidentes de dados
+incorretos em dashboards executivos em 70%. Colaboro com cientistas de dados na preparação de
+features para modelos de previsão de safra e otimização logística.
+Analista de Dados
+EY (Ernst & Young) · agosto de 2019 - maio de 2022
+Trabalhei em projetos de analytics e governança de dados para clientes dos setores de energia e
+manufatura. Automatizei processos de relatórios financeiros e operacionais utilizando Python e SQL,
+eliminando retrabalho manual. Participei de implementações de ferramentas de BI como Power BI e
+Qlik Sense, treinando usuários-chave nas áreas de negócio.
+Formação Acadêmica
+Bacharelado em Engenharia da Computação - Instituto Mauá de Tecnologia, concluído em 2019.
+Principais Competências
+Apache Airflow, Spark, Python, SQL, Azure Data Factory, Delta Lake, dbt, Great Expectations, Power
+BI, SAP BW
+

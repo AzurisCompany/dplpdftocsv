@@ -1,0 +1,34 @@
+Rodrigo Fonseca Almeida
+Data Architecture | Lakehouse | Spark | Databricks | Governança de Dados |
+Transformação digital no setor de energia
+Email: rodrigo.fonseca@gmail.com
+Telefone: (21) 94512-8763
+Cargo: Arquiteto de Dados
+Empresa: Petrobras
+Resumo
+Arquiteto de dados com 9 anos de experiência em projetos de engenharia e governança de dados para
+grandes organizações. Especializado em arquiteturas modernas de Lakehouse e Data Mesh, com
+ampla experiência em ambientes híbridos (on-premise e nuvem). Tenho histórico de liderança de times
+técnicos multidisciplinares e de entrega de soluções que suportam decisões estratégicas em tempo
+real.
+Experiência
+Arquiteto de Dados Sênior
+Petrobras · setembro de 2020 - Presente
+Responsável pela definição e evolução da arquitetura de dados corporativa, suportando iniciativas de
+inteligência artificial e analytics em áreas como exploração, produção e downstream. Liderei a
+implementação da plataforma de Data Lakehouse baseada em Databricks e Delta Lake, centralizando
+dados de mais de 50 sistemas legados. Coordenei a criação do programa de governança de dados da
+empresa, definindo padrões de qualidade, catalogação e acesso seguro às informações.
+Engenheiro de Dados Sênior
+Accenture Brasil · abril de 2016 - agosto de 2020
+Atuei em projetos de engenharia de dados para clientes dos setores de energia, telecomunicações e
+serviços financeiros. Liderei equipes de até 8 pessoas na construção de pipelines de ingestão e
+transformação de dados em escala de terabytes. Conduzi workshops técnicos e treinamentos internos
+sobre arquitetura de dados e boas práticas de engenharia.
+Formação Acadêmica
+Mestrado em Engenharia de Sistemas e Computação - UFRJ, concluído em 2015. Bacharelado em
+Ciência da Computação - UERJ, concluído em 2013.
+Principais Competências
+Databricks, Apache Spark, Delta Lake, SQL, Python, Azure, Data Mesh, Airflow, dbt, Kafka, Data
+Governance
+

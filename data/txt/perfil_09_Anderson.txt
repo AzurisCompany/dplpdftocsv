@@ -1,0 +1,35 @@
+Anderson Queiroz Barbosa
+Cybersecurity | AppSec | Pentest | LGPD | Sast/Dast | Segurança como parte do
+desenvolvimento, não um obstáculo
+Email: anderson.barbosa@email.com
+Telefone: (71) 90123-4567
+Cargo: Engenheiro de Segurança da Informação
+Empresa: Grupo Boticário
+Resumo
+Engenheiro de segurança com 8 anos de experiência em application security, testes de intrusão e
+gestão de vulnerabilidades. Atuo na integração de práticas de segurança ao longo do ciclo de
+desenvolvimento de software (DevSecOps), promovendo uma cultura onde segurança é
+responsabilidade de todos no time. Tenho experiência em conformidade com LGPD, PCI-DSS e ISO
+27001, além de expertise em avaliação de risco em ambientes de e-commerce e varejo.
+Experiência
+Engenheiro de Segurança Sênior
+Grupo Boticário · novembro de 2021 - Presente
+Responsável pela estratégia de Application Security da empresa, que opera um dos maiores
+e-commerces de cosméticos do Brasil. Implementei um programa de SAST e DAST integrado ao
+pipeline de CI/CD, identificando e corrigindo centenas de vulnerabilidades antes da chegada à
+produção. Conduzi treinamentos de Secure Coding para mais de 120 desenvolvedores e realizei red
+team exercises para avaliar a resiliência dos sistemas. Liderei o processo de adequação à LGPD na
+área de tecnologia, mapeando fluxos de dados e implementando controles técnicos de proteção.
+Analista de Pentest Pleno
+Tempest Security Intelligence · março de 2017 - outubro de 2021
+Realizei testes de invasão em aplicações web, APIs e infraestrutura para clientes dos setores
+financeiro, varejista e de saúde. Elaborei relatórios técnicos e executivos detalhando vulnerabilidades
+encontradas e planos de remediação. Participei de CTFs e fóruns de segurança, mantendo-me
+atualizado com as técnicas de ataque mais recentes.
+Formação Acadêmica
+Bacharelado em Ciência da Computação - UFBA, concluído em 2016. Certificações: OSCP, CEH, ISO
+27001 Lead Auditor.
+Principais Competências
+Pentest, OWASP, Burp Suite, SAST, DAST, DevSecOps, LGPD, PCI-DSS, Python, Kali Linux, AWS
+Security
+

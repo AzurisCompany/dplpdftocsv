@@ -1,0 +1,31 @@
+Natália Ramos Carvalho
+Mobile Development | Flutter | Dart | Android | iOS | Entregando experiências rápidas e
+fluidas para milhões de usuários
+Email: natalia.carvalho@uol.com.br
+Telefone: (85) 95634-7821
+Cargo: Desenvolvedora Mobile
+Empresa: iFood
+Resumo
+Desenvolvedora mobile com 5 anos de experiência em aplicações de alto tráfego. Atuo no
+desenvolvimento de funcionalidades do aplicativo do iFood para consumidores, com foco em
+performance, acessibilidade e experiência do usuário. Tenho habilidade em trabalhar em squads
+multidisciplinares com designers, PMs e QAs, mantendo alta qualidade de código e boas práticas de
+testes automatizados.
+Experiência
+Desenvolvedora Mobile Flutter
+iFood · outubro de 2022 - Presente
+Responsável pelo desenvolvimento de novas funcionalidades no super app do iFood, incluindo
+módulos de rastreamento de pedidos em tempo real e personalização de feed. Contribuo ativamente
+com a biblioteca interna de componentes UI, garantindo consistência visual e de comportamento em
+toda a aplicação. Participei da iniciativa de acessibilidade do app, tornando a experiência mais inclusiva
+para usuários com deficiências visuais e motoras.
+Desenvolvedora Android Plena
+Movile · março de 2020 - setembro de 2022
+Desenvolvi e mantive funcionalidades do aplicativo de entretenimento PlayKids, voltado ao público
+infantil. Implementei integração com APIs de streaming e sistemas de controle parental. Participei de
+processos de code review e mentorei estagiários durante o programa de estágio da empresa.
+Formação Acadêmica
+Bacharelado em Engenharia de Software - Universidade Federal do Ceará (UFC), concluído em 2019.
+Principais Competências
+Flutter, Dart, Android, Kotlin, iOS, Swift, Firebase, REST APIs, Git, Testes automatizados
+

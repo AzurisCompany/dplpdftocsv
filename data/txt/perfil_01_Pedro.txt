@@ -1,0 +1,35 @@
+Pedro Henrique Assunção
+Backend Engineering | Clojure | Kafka | Microservices | Fintech | Sistemas distribuídos
+em alta escala
+Email: pedro.assuncao@gmail.com
+Telefone: (11) 98001-2345
+Cargo: Engenheiro de Software Backend
+Empresa: Nubank
+Resumo
+Engenheiro de software com foco em sistemas backend de alta disponibilidade e baixa latência.
+Trabalho diretamente na squad responsável pelo processamento de transações financeiras em tempo
+real, garantindo que milhões de operações sejam executadas diariamente com segurança e
+consistência. Tenho experiência sólida em design de APIs RESTful e assíncronas, modelagem de
+dados em bancos relacionais e não-relacionais, e colaboração com times de produto para definição de
+requisitos técnicos. Sou apaixonado por boas práticas de engenharia, código limpo e revisões de
+código que geram crescimento no time.
+Experiência
+Engenheiro de Software Backend
+Nubank · março de 2022 - Presente
+Atuo no desenvolvimento e manutenção de serviços críticos para o processamento de transações
+financeiras. Responsável por implementar melhorias de performance que reduziram o tempo de
+resposta médio das APIs em 40%. Participei ativamente da migração de um monólito legado para uma
+arquitetura de microsserviços, contribuindo com design técnico, documentação e code reviews.
+Trabalho em conjunto com times de dados e segurança para garantir conformidade regulatória e
+proteção das informações dos clientes.
+Desenvolvedor Backend Pleno
+CI&T; · junho de 2019 - fevereiro de 2022
+Desenvolvi soluções backend para clientes do setor bancário e de varejo, utilizando Java com Spring
+Boot e Node.js. Participei de projetos de integração entre sistemas legados e plataformas modernas via
+APIs REST e mensageria com RabbitMQ. Colaborei com squads ágeis multidisciplinares em
+cerimônias Scrum, refinamentos e planejamentos de sprint.
+Formação Acadêmica
+Bacharelado em Ciência da Computação - Universidade de São Paulo (USP), concluído em 2019.
+Principais Competências
+Clojure, Java, Spring Boot, Kafka, PostgreSQL, Redis, Docker, Kubernetes, REST APIs, Microservices
+
